@@ -10,7 +10,7 @@ public class Main {
     static int mult(int a, int b) {
         return a * b;
     }
-    static int div(int a, int b) {
+    static double div(double a, double b) {
         return a / b;
     }
     static int mod(int a, int b) {
