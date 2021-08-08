@@ -21,13 +21,15 @@ test {
 
 System.setProperty("root.dir", project.projectDir.toString())
 
-tasks.register(
+def runTask = tasks.register(
         "runAll",
         ExecuteTask,
         sourceSets.main.runtimeClasspath,
         sourceSets.main.runtimeClasspath.filter {file -> file.path.endsWith("classes/java/main")},
         "week[0-9]+/_[0-9]+/Main.class"
 )
+
+runTask.configure { dependsOn(build) }
 
 tasks.register("runAllViaGroovy") {
     dependsOn build
