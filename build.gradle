@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    gradleApi()
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
@@ -18,7 +19,17 @@ test {
     useJUnitPlatform()
 }
 
-tasks.register("runAll") {
+System.setProperty("root.dir", project.projectDir.toString())
+
+tasks.register(
+        "runAll",
+        ExecuteTask,
+        sourceSets.main.runtimeClasspath,
+        sourceSets.main.runtimeClasspath.filter {file -> file.path.endsWith("classes/java/main")},
+        "week[0-9]+/_[0-9]+/Main.class"
+)
+
+tasks.register("runAllViaGroovy") {
     dependsOn build
     timeout = Duration.ofMinutes(5)
 
