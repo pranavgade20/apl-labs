@@ -11,6 +11,7 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 public class ExecuteTask extends DefaultTask {
@@ -42,11 +43,33 @@ public class ExecuteTask extends DefaultTask {
                         String relativePath = path.toPath().relativize(classPath).toString();
                         System.out.println("---Executing " + relativePath.replaceAll(".class$", ""));
                         var sout = System.out;
+                        var sin = System.in;
                         var bos = new ByteArrayOutputStream();
                         System.setOut(new PrintStream(bos));
+                        PipedOutputStream os = new PipedOutputStream();
+                        PipedInputStream is = new PipedInputStream(1024*16);
+                        try {
+                            is.connect(os);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        System.setIn(is);
+                        var fileReaderThread = new Thread(() -> {
+                            try {
+                                var fileReader = new BufferedReader(new FileReader(new File(System.getProperty("root.dir"), "in/" + relativePath.replaceAll(".class$", ""))));
+                                String line;
+                                while ((line = fileReader.readLine()) != null) {
+                                     os.write((line+"\r\n").getBytes(StandardCharsets.UTF_8));
+                                     os.flush();
+                                }
+                            } catch (Throwable ignored) { }
+                        });
+                        fileReaderThread.start();
                         Class<?> klass = loader.loadClass(relativePath.replaceAll(".class$", "").replaceAll("/", "."));
                         klass.getDeclaredMethod("main", String[].class).invoke(null, (Object) (new String[]{}));
                         System.setOut(sout);
+                        System.setIn(sin);
                         bos.flush();
                         bos.writeTo(sout);
                         var outFile = new File(System.getProperty("root.dir"), "out/" + relativePath.replaceAll(".class$", ""));
@@ -58,6 +81,7 @@ public class ExecuteTask extends DefaultTask {
                         fos.flush();
                         fos.close();
                         bos.close();
+                        fileReaderThread.interrupt();
                         System.out.println("---Finished executing " + relativePath.replaceAll(".class$", ""));
                     } catch (Throwable e) {
                         e.printStackTrace();

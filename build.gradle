@@ -29,7 +29,18 @@ def runTask = tasks.register(
         "week[0-9]+/_[0-9]+/Main(_\\w*)*.class"
 )
 
+def param = "a^"
+if (project.hasProperty("args")) param = project.property("args").toString()
+// run with `gradle runOne -Pargs=week2/_5/Main.class`
+def runOne = tasks.register(
+        "runOne",
+        ExecuteTask,
+        sourceSets.main.runtimeClasspath,
+        sourceSets.main.runtimeClasspath.filter {file -> file.path.endsWith("classes/java/main")},
+        param
+)
 runTask.configure { dependsOn(build) }
+runOne.configure { dependsOn(build) }
 
 tasks.register("runAllViaGroovy") {
     dependsOn build
@@ -47,28 +58,31 @@ tasks.register("runAllViaGroovy") {
                 assignmentName -> Arrays.stream(assignmentName.listFiles())
                     .filter(className -> className.name.matches("^Main.class\$"))
                     .forEach(classfile -> {
-                        getLogger().log(LogLevel.ERROR, "INFO: Executing $weekName.name/$assignmentName.name")
-                        def bos = new ByteArrayOutputStream()
-                        exec {
-                            commandLine "java", "-classpath", sourceSets.main.runtimeClasspath.getAsPath(), "$weekName.name.$assignmentName.name." + classfile.name.replace(".class", "")
-                            standardOutput(bos)
-                        }
-                        try {
-                            bos.flush()
-                            getLogger().log(LogLevel.WARN, bos.toString())
-                            def outFile = new File(project.projectDir, "out/$weekName.name/out$assignmentName.name")
-                            outFile.getParentFile().mkdirs()
-                            outFile.createNewFile()
-                            def fos = new FileOutputStream(outFile)
-                            bos.writeTo(fos)
-                            bos.flush()
-                            fos.flush()
-                            fos.close()
-                            bos.close()
-                        } catch (Exception e) {
-                            e.printStackTrace()
-                        } finally {
-                            getLogger().log(LogLevel.ERROR, "INFO: Finished executing  $weekName.name/$assignmentName.name")
+                        def inFile = new File(project.projectDir, "in/$weekName.name/$assignmentName.name")
+                        if (!inFile.exists()) {
+                            getLogger().log(LogLevel.ERROR, "INFO: Executing $weekName.name/$assignmentName.name")
+                            def bos = new ByteArrayOutputStream()
+                            exec {
+                                commandLine "java", "-classpath", sourceSets.main.runtimeClasspath.getAsPath(), "$weekName.name.$assignmentName.name." + classfile.name.replace(".class", "")
+                                standardOutput(bos)
+                            }
+                            try {
+                                bos.flush()
+                                getLogger().log(LogLevel.WARN, bos.toString())
+                                def outFile = new File(project.projectDir, "out/$weekName.name/out$assignmentName.name")
+                                outFile.getParentFile().mkdirs()
+                                outFile.createNewFile()
+                                def fos = new FileOutputStream(outFile)
+                                bos.writeTo(fos)
+                                bos.flush()
+                                fos.flush()
+                                fos.close()
+                                bos.close()
+                            } catch (Exception e) {
+                                e.printStackTrace()
+                            } finally {
+                                getLogger().log(LogLevel.ERROR, "INFO: Finished executing  $weekName.name/$assignmentName.name")
+                            }
                         }
                     })
                 )
