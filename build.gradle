@@ -26,7 +26,7 @@ def runTask = tasks.register(
         ExecuteTask,
         sourceSets.main.runtimeClasspath,
         sourceSets.main.runtimeClasspath.filter {file -> file.path.endsWith("classes/java/main")},
-        "week[0-9]+/_[0-9]+/Main(_\\w*)*.class"
+        "week[0-9]+/_[0-9]+/(_\\w\$/)*Main(_\\w*)*.class"
 )
 
 def param = "a^"
