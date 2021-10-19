@@ -1,0 +1,12 @@
+T2 interrupted
+t1 is locking l1
+waiting for t2 to lock l2, then trying to acquire it.
+t2 is locking l2
+waiting for t1 to lock l1, then trying to acquire it.
+waiting to make sure threads are deadlocked
+t3 trying to lock l1, this will be a deadlock as well
+t4 trying to lock l2, this will be a deadlock as well
+t1 is in deadlock
+t2 is in deadlock
+t3 is in deadlock
+t4 is in deadlock

@@ -1,0 +1,5 @@
+interrupting t1:
+t1.isInterrupted() returns true
+interrupting t2:
+interrupting t3:
+interrupting t4:

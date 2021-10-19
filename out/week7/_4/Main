@@ -1,0 +1,10 @@
+T1 waiting for notification
+T2 waiting for notification
+notifying one thread:
+T1 received notification
+T1 waiting for notification
+notifying all threads:
+T1 received notification
+T1 waiting for notification
+T2 received notification
+T2 waiting for notification
