@@ -2,6 +2,12 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'java'
+
+compileJava {
+    options.compilerArgs << '--enable-preview'
+}
+
 group 'org.example'
 version '1.0-SNAPSHOT'
 
@@ -11,8 +17,6 @@ repositories {
 
 dependencies {
     gradleApi()
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
 test {
@@ -42,50 +46,52 @@ def runOne = tasks.register(
 runTask.configure { dependsOn(build) }
 runOne.configure { dependsOn(build) }
 
-tasks.register("runAllViaGroovy") {
-    dependsOn build
-    timeout = Duration.ofMinutes(5)
-
-    sourceSets.main.runtimeClasspath
-        .filter {file -> file.path.endsWith("classes/java/main")}
-        .forEach(
-        file -> Arrays.stream(file.listFiles())
-            .filter(filename -> filename.name.matches("^week[0-9]+\$"))
-            .forEachOrdered(
-            weekName -> Arrays.stream(weekName.listFiles())
-                .filter(assignmentName -> assignmentName.name.matches("^_[0-9]+\$"))
-                .forEachOrdered(
-                assignmentName -> Arrays.stream(assignmentName.listFiles())
-                    .filter(className -> className.name.matches("^Main.class\$"))
-                    .forEach(classfile -> {
-                        def inFile = new File(project.projectDir, "in/$weekName.name/$assignmentName.name")
-                        if (!inFile.exists()) {
-                            getLogger().log(LogLevel.ERROR, "INFO: Executing $weekName.name/$assignmentName.name")
-                            def bos = new ByteArrayOutputStream()
-                            exec {
-                                commandLine "java", "-classpath", sourceSets.main.runtimeClasspath.getAsPath(), "$weekName.name.$assignmentName.name." + classfile.name.replace(".class", "")
-                                standardOutput(bos)
-                            }
-                            try {
-                                bos.flush()
-                                getLogger().log(LogLevel.WARN, bos.toString())
-                                def outFile = new File(project.projectDir, "out/$weekName.name/out$assignmentName.name")
-                                outFile.getParentFile().mkdirs()
-                                outFile.createNewFile()
-                                def fos = new FileOutputStream(outFile)
-                                bos.writeTo(fos)
-                                bos.flush()
-                                fos.flush()
-                                fos.close()
-                                bos.close()
-                            } catch (Exception e) {
-                                e.printStackTrace()
-                            } finally {
-                                getLogger().log(LogLevel.ERROR, "INFO: Finished executing  $weekName.name/$assignmentName.name")
-                            }
-                        }
-                    })
-                )
-            )
-        )
-}
+//tasks.register("runAllViaGroovy") {
+//    dependsOn build
+//    timeout = Duration.ofMinutes(5)
+//
+//    sourceSets.main.runtimeClasspath
+//        .filter {file -> file.path.endsWith("classes/java/main")}
+//        .forEach(
+//        file -> Arrays.stream(file.listFiles())
+//            .filter(filename -> filename.name.matches("^week[0-9]+\$"))
+//            .forEachOrdered(
+//            weekName -> Arrays.stream(weekName.listFiles())
+//                .filter(assignmentName -> assignmentName.name.matches("^_[0-9]+\$"))
+//                .forEachOrdered(
+//                assignmentName -> Arrays.stream(assignmentName.listFiles())
+//                    .filter(className -> className.name.matches("^Main.class\$"))
+//                    .forEach(classfile -> {
+//                        def inFile = new File(project.projectDir, "in/$weekName.name/$assignmentName.name")
+//                        if (!inFile.exists()) {
+//                            getLogger().log(LogLevel.ERROR, "INFO: Executing $weekName.name/$assignmentName.name")
+//                            def bos = new ByteArrayOutputStream()
+//                            exec {
+//                                commandLine "java", "-classpath", sourceSets.main.runtimeClasspath.getAsPath(), "$weekName.name.$assignmentName.name." + classfile.name.replace(".class", "")
+//                                standardOutput(bos)
+//                            }
+//                            try {
+//                                bos.flush()
+//                                getLogger().log(LogLevel.WARN, bos.toString())
+//                                def outFile = new File(project.projectDir, "out/$weekName.name/out$assignmentName.name")
+//                                outFile.getParentFile().mkdirs()
+//                                outFile.createNewFile()
+//                                def fos = new FileOutputStream(outFile)
+//                                bos.writeTo(fos)
+//                                bos.flush()
+//                                fos.flush()
+//                                fos.close()
+//                                bos.close()
+//                            } catch (Exception e) {
+//                                e.printStackTrace()
+//                            } finally {
+//                                getLogger().log(LogLevel.ERROR, "INFO: Finished executing  $weekName.name/$assignmentName.name")
+//                            }
+//                        }
+//                    })
+//                )
+//            )
+//        )
+//}
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17

@@ -1,9 +1,0 @@
-calling run()
-directly invoking run() causes current the code to run in current thread, so execution beyond this point is paused until run() returns
-calling sleep()
-calling start()
-calling join()
-calling yield()
-calling getPriority(): 1
-calling suspend()
-calling resume()
