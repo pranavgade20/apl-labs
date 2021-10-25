@@ -1,0 +1,183 @@
+1. Create new Teacher
+2. Create new Staff
+3. Create new Student
+4. Add new student to Arts
+5. Print Arts students
+6. Add new student to Commerce
+7. Print Commerce students
+8. Add new student to Science
+9. Print Science students
+10. Exit
+Enter choice: 1
+Creating teacher...
+Enter name: Dr. Mary Samuel
+Enter roll no.: teacher23
+Enter phone no.: +919876543210
+Enter teacher name: Mary ma'am
+Enter area of teaching: Probability
+Teacher details are:
+Name is: Dr. Mary Samuel
+Roll no. is: teacher23
+Telephone no. is: +919876543210
+Teacher name is: Mary ma'am
+Area of teaching is: Probability
+1. Create new Teacher
+2. Create new Staff
+3. Create new Student
+4. Add new student to Arts
+5. Print Arts students
+6. Add new student to Commerce
+7. Print Commerce students
+8. Add new student to Science
+9. Print Science students
+10. Exit
+Enter choice: 2
+Creating staff...
+Enter name: xyz abc
+Enter roll no.: staff123
+Enter phone no.: +910987654321
+Enter staff name: abc
+Enter work: work
+Staff details are:
+Name is: xyz abc
+Roll no. is: staff123
+Telephone no. is: +910987654321
+Staff name is: abc
+Work is: work
+1. Create new Teacher
+2. Create new Staff
+3. Create new Student
+4. Add new student to Arts
+5. Print Arts students
+6. Add new student to Commerce
+7. Print Commerce students
+8. Add new student to Science
+9. Print Science students
+10. Exit
+Enter choice: 3
+Creating student...
+Enter name: Pranav
+Enter roll no.: LCI2020010
+Enter phone no.: +911234123412
+Student details are:
+Name is: Pranav
+Roll no. is: LCI2020010
+Telephone no. is: +911234123412
+1. Create new Teacher
+2. Create new Staff
+3. Create new Student
+4. Add new student to Arts
+5. Print Arts students
+6. Add new student to Commerce
+7. Print Commerce students
+8. Add new student to Science
+9. Print Science students
+10. Exit
+Enter choice: 4
+Enter name: Eshan
+Enter roll no.: LCI2020011
+Enter phone no.: +911234512345
+1. Create new Teacher
+2. Create new Staff
+3. Create new Student
+4. Add new student to Arts
+5. Print Arts students
+6. Add new student to Commerce
+7. Print Commerce students
+8. Add new student to Science
+9. Print Science students
+10. Exit
+Enter choice: 4
+Enter name: Arsh
+Enter roll no.: LCI2020012
+Enter phone no.: +911234512346
+1. Create new Teacher
+2. Create new Staff
+3. Create new Student
+4. Add new student to Arts
+5. Print Arts students
+6. Add new student to Commerce
+7. Print Commerce students
+8. Add new student to Science
+9. Print Science students
+10. Exit
+Enter choice: 5
+These are the students in Arts: 
+Name is: Eshan
+Roll no. is: LCI2020011
+Telephone no. is: +911234512345
+Name is: Arsh
+Roll no. is: LCI2020012
+Telephone no. is: +911234512346
+
+1. Create new Teacher
+2. Create new Staff
+3. Create new Student
+4. Add new student to Arts
+5. Print Arts students
+6. Add new student to Commerce
+7. Print Commerce students
+8. Add new student to Science
+9. Print Science students
+10. Exit
+Enter choice: 6
+Enter name: Ayush
+Enter roll no.: LCI2020013
+Enter phone no.: +919999999999
+1. Create new Teacher
+2. Create new Staff
+3. Create new Student
+4. Add new student to Arts
+5. Print Arts students
+6. Add new student to Commerce
+7. Print Commerce students
+8. Add new student to Science
+9. Print Science students
+10. Exit
+Enter choice: 8
+Enter name: Dhruv
+Enter roll no.: LCI2020015
+Enter phone no.: +918888888888
+1. Create new Teacher
+2. Create new Staff
+3. Create new Student
+4. Add new student to Arts
+5. Print Arts students
+6. Add new student to Commerce
+7. Print Commerce students
+8. Add new student to Science
+9. Print Science students
+10. Exit
+Enter choice: 7
+These are the students in Commerce: 
+Name is: Ayush
+Roll no. is: LCI2020013
+Telephone no. is: +919999999999
+
+1. Create new Teacher
+2. Create new Staff
+3. Create new Student
+4. Add new student to Arts
+5. Print Arts students
+6. Add new student to Commerce
+7. Print Commerce students
+8. Add new student to Science
+9. Print Science students
+10. Exit
+Enter choice: 9
+These are the students in Science: 
+Name is: Dhruv
+Roll no. is: LCI2020015
+Telephone no. is: +918888888888
+
+1. Create new Teacher
+2. Create new Staff
+3. Create new Student
+4. Add new student to Arts
+5. Print Arts students
+6. Add new student to Commerce
+7. Print Commerce students
+8. Add new student to Science
+9. Print Science students
+10. Exit
+Enter choice: 10

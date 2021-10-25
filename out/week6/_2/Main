@@ -1,0 +1,9 @@
+finalize called
+calling run()
+calling sleep()
+calling start()
+calling join()
+calling yield()
+calling getPriority(): 10
+calling suspend()
+calling resume()

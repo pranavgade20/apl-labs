@@ -1,0 +1,7 @@
+packet.getAddress() returns: ping.online.net/62.210.18.40
+packet.getData() returns: [104, 101, 108, 108, 111]
+packet.getLength() returns: 5
+packet.getOffset() returns: 0
+packet.getSocketAddress() returns: ping.online.net/62.210.18.40:5206
+setting packet port to 12345...
+sending 'hello'...

@@ -1,0 +1,6 @@
+url.getProtocol() returns: https
+url.getHost() returns: pranavg.me
+url.getPort() returns: 443
+url.getAuthority() returns: pranavg.me:443
+url.toURI() returns: https://pranavg.me:443/blog?a=b
+url.getQuery() returns: a=b

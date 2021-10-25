@@ -1,0 +1,8 @@
+calling list():
+java.lang.ThreadGroup[name=group,maxpri=10]
+calling isDaemon(): false
+calling activeCount(): 0
+calling activeGroupCount(): 0
+calling getName(): group
+calling suspend()
+calling resume()

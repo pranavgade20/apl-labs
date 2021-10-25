@@ -1,0 +1,6 @@
+creating a HttpURLConnection
+setting FixedLengthStreamingMode
+connection.getInstanceFollowRedirects() returns true
+connection.getHeaderFieldDate() returns 0
+connection.getRequestMethod() returns GET
+connection.usingProxy() returns false
