@@ -1,3 +1,4 @@
+Daemon thread is killed
 calling run()
 directly invoking run() causes current the code to run in current thread, so execution beyond this point is paused until run() returns
 calling sleep()

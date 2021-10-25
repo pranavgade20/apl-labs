@@ -1,3 +1,4 @@
+T1 interrupted
 T2 interrupted
 t1 is locking l1
 waiting for t2 to lock l2, then trying to acquire it.

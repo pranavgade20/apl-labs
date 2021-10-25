@@ -1,5 +1,4 @@
 interrupting t1:
-interrupted t1
 t1.isInterrupted() returns true
 interrupting t2:
 interrupting t3:

@@ -1,4 +1,4 @@
-socket.getLocalSocketAddress() returns: /10.1.0.168:39253
+socket.getLocalSocketAddress() returns: /10.1.0.39:44234
 socket.getPort() returns: 5206
 socket.isClosed() returns: false
 socket.isConnected() returns: true
